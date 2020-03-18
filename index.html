@@ -1,0 +1,72 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<style>
+
+   body{
+        background-color: #1f1f1f;
+    }
+    input{
+        width: 250px;
+        height:40px;
+    }
+
+    button{
+        width:150px;
+        height:50px;
+        margin-top: 50px;
+        border:0px;
+        border-radius:5px;
+        color:#ffffff;
+        background-image:-webkit-linear-gradient(47deg,#f11d4b 0,#f11d4bd8 100%);
+        box-shadow: 0 4px 15px 0 #f11d4bb2;
+    }
+
+    img{
+        margin-bottom: 50px;
+        width: 150px;
+        height: 150px;
+    }
+</style>
+<center>
+<div><br><br><br><br><br><br>
+    <img src="img/mbc_logo.png">
+<form>
+
+    <input type="text"  placeholder="Staff ID" id="user" class="user_txt"><br><br>
+    <input type="password" placeholder="Password" id="pass" class="user_txt"><br><br>
+   
+
+</form>
+
+<button onclick="login()">login</button>
+</div>
+</center>
+<script>
+
+     var user;
+     var pass;
+   
+    function login() {
+        user =document.getElementById("user").value;
+        pass =document.getElementById("pass").value;
+        $.ajax({
+                url: "validate.php",
+				data: {user:user, pass:pass, validation:1},
+                type: "POST",
+                success: function (data,status) {
+                        if(data==1)
+                        {
+                            window.location.href = 'attendance.php';
+                        }
+                        else
+                        {
+                            alert("Incorrect Username/Password");
+                        }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("Error Connecting To Server");
+                }
+                });
+    }
+</script>
