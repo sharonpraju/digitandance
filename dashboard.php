@@ -1,3 +1,10 @@
+<?php>
+session_start();
+if(!isset($_SESSION['admin']))
+{
+  header("location:index.html");
+}
+?>
 <style>
 .div_top{
     height:40%;
